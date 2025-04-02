@@ -6,10 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-                <main className="w-full p-4">
-                    <SidebarTrigger />
-                    {children}
-                </main>
+                <main className="w-full">{children}</main>
             </SidebarInset>
         </SidebarProvider>
     );

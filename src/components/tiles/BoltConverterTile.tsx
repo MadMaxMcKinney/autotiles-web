@@ -249,7 +249,7 @@ export default function BoltConverterTile() {
                         {metricBolt && (
                             <div className="text-sm text-muted-foreground">
                                 <div>
-                                    <p className="font-medium">Metric</p>
+                                    <p className="font-bold">Metric</p>
                                     <p>Diameter: {metricBolt.diameter_mm} mm</p>
                                     <p>Thread Pitch: {metricBolt.thread_pitch_mm} mm</p>
                                     <p>Wrench Size: {metricBolt.wrench_size_mm} mm</p>
@@ -259,7 +259,7 @@ export default function BoltConverterTile() {
                         {saeBolt && (
                             <div className="text-sm text-muted-foreground @[450px]:text-right">
                                 <div>
-                                    <p className="font-medium">SAE</p>
+                                    <p className="font-bold">SAE</p>
                                     <p>Diameter: {saeBolt.diameter_in} in</p>
                                     <p>Threads per Inch: {saeBolt.threads_per_inch}</p>
                                     <p>Wrench Size: {saeBolt.wrench_size_in} in</p>
