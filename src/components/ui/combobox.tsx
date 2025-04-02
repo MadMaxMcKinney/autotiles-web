@@ -12,13 +12,16 @@ interface ComboboxProps {
     values: { value: string; label: string; shortcut?: string }[];
     prompt: string;
     searchPrompt: string;
+    value?: string;
     onChange?: (value: string) => void;
     className?: string;
 }
 
-export function Combobox({ values, prompt, searchPrompt, className, onChange }: ComboboxProps) {
+export function Combobox({ values, prompt, searchPrompt, className, value: controlledValue, onChange }: ComboboxProps) {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("");
+    const [internalValue, setInternalValue] = React.useState("");
+
+    const value = controlledValue !== undefined ? controlledValue : internalValue;
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -39,7 +42,10 @@ export function Combobox({ values, prompt, searchPrompt, className, onChange }: 
                                     key={valueInstance.value}
                                     value={valueInstance.value}
                                     onSelect={(currentValue) => {
-                                        setValue(currentValue === value ? "" : currentValue);
+                                        // If the controlled value is undefined, update the internal state
+                                        if (controlledValue === undefined) {
+                                            setInternalValue(currentValue === value ? "" : currentValue);
+                                        }
                                         setOpen(false);
                                         onChange && onChange(currentValue);
                                     }}
