@@ -2,10 +2,9 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader } f
 
 export function AppSidebar() {
     return (
-        <Sidebar>
+        <Sidebar variant="inset">
             <SidebarHeader />
             <SidebarContent>
-                <SidebarGroup />
                 <SidebarGroup />
             </SidebarContent>
             <SidebarFooter />
