@@ -47,7 +47,7 @@ export function AppSidebar() {
                             <SidebarMenu>
                                 {group.items.map((item, index) => (
                                     <SidebarMenuItem key={index}>
-                                        <SidebarMenuButton asChild isActive={item.href === window.location.pathname}>
+                                        <SidebarMenuButton asChild>
                                             <Link href={item.href}>
                                                 <item.icon />
                                                 <span>{item.name}</span>
