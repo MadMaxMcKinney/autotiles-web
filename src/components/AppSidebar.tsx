@@ -37,7 +37,7 @@ export function AppSidebar() {
             <SidebarHeader>
                 <div className="flex items-center gap-2">
                     <GridFour weight="fill" className="text-lg" />
-                    <h2 className="text-xl font-bold">Autotiles</h2>
+                    <h2 className="text-lg font-bold">Throttle Ctrl</h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>

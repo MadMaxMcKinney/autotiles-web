@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Autotiles",
+    title: "Throttle Ctrl",
     description: "A collection of modular automotive tools and resources, all in one place",
 };
 

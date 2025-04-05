@@ -3,9 +3,12 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
-import { Bolt, CircleAlert } from "lucide-react";
-import { useState } from "react";
+import { ArrowUpRight, Bolt, CircleAlert } from "lucide-react";
+import { useRef, useState } from "react";
+import { createRoot } from "react-dom/client";
+import Markdown from "react-markdown";
 
 interface OBD2Code {
     id: string;
@@ -50,18 +53,15 @@ export default function OBD2Tile() {
                     <Button onClick={() => searchOBD2Code()}>Search</Button>
                 </div>
                 {codeOverview && !notFound && (
-                    // <div className="mt-6 text-base">
-                    //     <div className="flex items-start gap-2">
-                    //         <div className="flex flex-col gap-1">
-                    //             <p className="font-medium leading-none">{codeOverview.value}</p>
-                    //             <p className="text-sm text-muted-foreground">{codeOverview.id}</p>
-                    //         </div>
-                    //     </div>
-                    // </div>
                     <Alert className="mt-6">
                         <Bolt className="text-sm" />
-                        <AlertTitle>{codeOverview.value}</AlertTitle>
-                        <AlertDescription>{codeOverview.id}</AlertDescription>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <AlertTitle>{codeOverview.value}</AlertTitle>
+                                <AlertDescription>{codeOverview.id}</AlertDescription>
+                            </div>
+                            <MoreInfoDrawer overview={codeOverview} />
+                        </div>
                     </Alert>
                 )}
                 {notFound && (
@@ -72,5 +72,37 @@ export default function OBD2Tile() {
                 )}
             </CardContent>
         </Card>
+    );
+}
+
+function MoreInfoDrawer({ overview }: { overview: OBD2Code }) {
+    const markdown = `# ${overview.value}`;
+
+    return (
+        <Drawer>
+            <DrawerTrigger asChild>
+                <Button variant={"link"}>
+                    Details <ArrowUpRight />
+                </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+                <div className="overflow-y-auto w-full">
+                    <div className="max-w-xl py-9 w-full mx-auto">
+                        <DrawerHeader>
+                            <DrawerTitle className="text-xl">{overview.value}</DrawerTitle>
+                            <DrawerDescription>{overview.id}</DrawerDescription>
+                            <div className="mt-4 prose prose-sm prose-neutral dark:prose-invert">
+                                <Markdown>{markdown}</Markdown>
+                            </div>
+                        </DrawerHeader>
+                        <DrawerFooter>
+                            <DrawerClose asChild>
+                                <Button variant="outline">Close</Button>
+                            </DrawerClose>
+                        </DrawerFooter>
+                    </div>
+                </div>
+            </DrawerContent>
+        </Drawer>
     );
 }
