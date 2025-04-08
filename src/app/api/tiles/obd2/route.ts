@@ -1,4 +1,4 @@
-import codes from "@/data/obd2.json";
+import codes from "@/data/obd2_codes.json";
 import { NextRequest, NextResponse } from "next/server";
 
 export function GET(request: NextRequest) {
@@ -8,7 +8,7 @@ export function GET(request: NextRequest) {
     if (!code) {
         return NextResponse.json({ error: "OBD2 code not provided" }, { status: 400 });
     }
-    const codeData = codes.find((item) => item.id.toLowerCase() === code.toLowerCase());
+    const codeData = (codes as OBD2Code[]).find((item) => item.id.toLowerCase() === code.toLowerCase());
 
     if (!codeData) {
         return NextResponse.json({ error: "OBD2 code not found in database" }, { status: 404 });

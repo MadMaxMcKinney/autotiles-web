@@ -6,14 +6,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { ArrowUpRight, Bolt, CircleAlert } from "lucide-react";
-import { useRef, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
-
-interface OBD2Code {
-    id: string;
-    value: string;
-}
 
 export default function OBD2Tile() {
     const [searchCode, setSearchCode] = useState("");
@@ -57,7 +51,7 @@ export default function OBD2Tile() {
                         <Bolt className="text-sm" />
                         <div className="flex items-center justify-between">
                             <div>
-                                <AlertTitle>{codeOverview.value}</AlertTitle>
+                                <AlertTitle>{codeOverview.title}</AlertTitle>
                                 <AlertDescription>{codeOverview.id}</AlertDescription>
                             </div>
                             <MoreInfoDrawer overview={codeOverview} />
@@ -76,10 +70,18 @@ export default function OBD2Tile() {
 }
 
 function MoreInfoDrawer({ overview }: { overview: OBD2Code }) {
-    const markdown = `# ${overview.value}`;
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            console.log("Drawer is now rendered on the page.");
+        } else {
+            console.log("Drawer is closed.");
+        }
+    }, [isOpen]);
 
     return (
-        <Drawer>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger asChild>
                 <Button variant={"link"}>
                     Details <ArrowUpRight />
@@ -89,10 +91,10 @@ function MoreInfoDrawer({ overview }: { overview: OBD2Code }) {
                 <div className="overflow-y-auto w-full">
                     <div className="max-w-xl py-9 w-full mx-auto">
                         <DrawerHeader>
-                            <DrawerTitle className="text-xl">{overview.value}</DrawerTitle>
+                            <DrawerTitle className="text-xl">{overview.title}</DrawerTitle>
                             <DrawerDescription>{overview.id}</DrawerDescription>
-                            <div className="mt-4 prose prose-sm prose-neutral dark:prose-invert">
-                                <Markdown>{markdown}</Markdown>
+                            <div className="mt-4 prose prose-neutral dark:prose-invert">
+                                <Markdown>{overview.description}</Markdown>
                             </div>
                         </DrawerHeader>
                         <DrawerFooter>
