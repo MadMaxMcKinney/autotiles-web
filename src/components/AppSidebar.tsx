@@ -2,17 +2,17 @@
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { GridFour } from "@phosphor-icons/react/dist/ssr";
-import { Grid, MessageSquare, Settings } from "lucide-react";
+import { Grid, MessageSquare, Settings, ScanBarcode } from "lucide-react";
 import Link from "next/link";
 
 const sidebarItems = [
     {
-        group: "Tiles",
+        group: "Diagnostics",
         items: [
             {
-                name: "Tiles",
-                icon: Grid,
-                href: "/app",
+                name: "OBD2",
+                icon: ScanBarcode,
+                href: "/app/obd2",
             },
         ],
     },

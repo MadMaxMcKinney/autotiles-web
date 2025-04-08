@@ -1,6 +1,6 @@
 import BreadcrumbTitle from "@/components/BreadcrumbTitle";
 import BoltConverterTile from "@/components/tiles/BoltConverterTile";
-import OBD2Tile from "@/components/tiles/OBD2Tile";
+import ToolOBD2 from "@/components/tools/ToolOBD2";
 
 export default function Page() {
     return (
@@ -13,7 +13,7 @@ export default function Page() {
                 </div>
                 {/* Col */}
                 <div className="grid grid-flow-row gap-4">
-                    <OBD2Tile />
+                    <ToolOBD2 />
                 </div>
             </div>
         </>
