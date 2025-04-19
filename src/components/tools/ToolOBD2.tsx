@@ -138,18 +138,12 @@ export default function ToolOBD2() {
                                             delay: index * 0.1,
                                         }}
                                     >
-                                        <Card className="p-4">
-                                            <CardHeader className="p-0">
-                                                <CardTitle className="flex flex-col gap-2 leading-snug">
-                                                    <Badge
-                                                        variant={"secondary"}
-                                                    >
-                                                        {item.id}
-                                                    </Badge>
-                                                    {item.title}
-                                                </CardTitle>
-                                            </CardHeader>
-                                        </Card>
+                                        <button className="hover:border-accent-foreground flex w-full flex-col items-start gap-2 rounded-xl border p-4 leading-snug transition-all">
+                                            <Badge variant={"secondary"}>
+                                                {item.id}
+                                            </Badge>
+                                            {item.title}
+                                        </button>
                                     </motion.div>
                                 ))}
                             </AnimatePresence>
